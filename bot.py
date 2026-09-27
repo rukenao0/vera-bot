@@ -61,6 +61,22 @@ class ReplyRequest(BaseModel):
 # ENDPOINTS
 # ═════════════════════════════════════════════════════════════════════════
 
+@app.get("/")
+async def root():
+    return {
+        "status": "online",
+        "service": "Vera AI Merchant Growth Engine",
+        "version": "1.0.0",
+        "endpoints": {
+            "health": "/v1/healthz",
+            "metadata": "/v1/metadata",
+            "context_push": "/v1/context (POST)",
+            "tick": "/v1/tick (POST)",
+            "reply": "/v1/reply (POST)",
+        }
+    }
+
+
 @app.get("/v1/healthz")
 async def healthz():
     uptime = int(time.time() - START_TIME)
